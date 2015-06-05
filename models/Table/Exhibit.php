@@ -79,7 +79,6 @@ class Table_Exhibit extends Omeka_Db_Table
     public function applySearchFilters($select, $params)
     {
         $db = $this->getDb();
-        parent::applySearchFilters($select, $params);
 
         foreach($params as $paramName => $paramValue) {
             switch($paramName) {

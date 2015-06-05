@@ -150,6 +150,10 @@ class ExhibitLayout
             'text' => array(
                 'name' => __('Text'),
                 'description' => __('Layout featuring a block of text without files')
+			),
+            'vertical-two' => array(
+                'name' => __('Vertical Two'),
+                'description' => __('Layout featuring two large vertical columns')
             )
         );
 
