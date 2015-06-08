@@ -154,7 +154,12 @@ class ExhibitLayout
             'vertical-two' => array(
                 'name' => __('Vertical Two'),
                 'description' => __('Layout featuring two large vertical columns')
+            ),
+			'horizontal-one' => array(
+                'name' => __('Horizontal One'),
+                'description' => __('One long horizontal file in a single row')
             )
+
         );
 
         $layouts = apply_filters('exhibit_layouts', $defaultLayouts);

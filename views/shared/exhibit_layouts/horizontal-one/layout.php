@@ -9,4 +9,4 @@ $captionPosition = isset($options['captions-position'])
 	
 <div class="gallery <?php if ($showcaseFile || !empty($text)) echo "$galleryPosition"; ?> captions-<?php echo $captionPosition; ?>">
     <?php echo $this->exhibitAttachmentGallery($attachments, array('imageSize' => $galleryFileSize)); ?>
-</div>
+	</div>
