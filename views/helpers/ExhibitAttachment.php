@@ -17,7 +17,7 @@ class ExhibitBuilder_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abst
      *  always Defaults to false.
      * @return string
      */
-    public function exhibitAttachment($attachment, $fileOptions = array(), $linkProps = array(), $forceImage = false)
+    public function exhibitAttachment($attachment, $fileOptions = array(), $linkProps = array(), $forceImage = false, $zoom = false)
     {
         $item = $attachment->getItem();
         $file = $attachment->getFile();
@@ -26,14 +26,16 @@ class ExhibitBuilder_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abst
             if (!isset($fileOptions['imgAttributes']['alt'])) {
                 $fileOptions['imgAttributes']['alt'] = metadata($item, array('Dublin Core', 'Title'), array('no_escape' => true));
             }
-            
             if ($forceImage) {
                 $imageSize = isset($fileOptions['imageSize'])
                     ? $fileOptions['imageSize']
-                    : 'square_thumbnail';
+                    : 'fullsize';
                 $image = file_image($imageSize, $fileOptions['imgAttributes'], $file);
                 $html = exhibit_builder_link_to_exhibit_item($image, $linkProps, $item);
-            } else {
+            } 
+			if ($zoom) {
+				$html = $this->openLayersZoom()->zoom($item); 
+			} else {
                 if (!isset($fileOptions['linkAttributes']['href'])) {
                     $fileOptions['linkAttributes']['href'] = exhibit_builder_exhibit_item_uri($item);
                 }
@@ -49,6 +51,7 @@ class ExhibitBuilder_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abst
         } else {
             $html = '';
         }
+		
 
         return apply_filters('exhibit_attachment_markup', $html,
             compact('attachment', 'fileOptions', 'linkProps', 'forceImage')
