@@ -16,7 +16,7 @@ class ExhibitBuilder_View_Helper_ExhibitAttachmentGallery extends Zend_View_Help
      * @param array $linkProps
      * @return string
      */
-    public function exhibitAttachmentGallery($attachments, $fileOptions = array(), $linkProps = array())
+    public function exhibitAttachmentGallery($attachments, $fileOptions = array(), $linkProps = array(), $forceImage = false, $zoom = false)
     {
         if (!isset($fileOptions['imageSize'])) {
             $fileOptions['imageSize'] = 'square_thumbnail';
@@ -25,7 +25,7 @@ class ExhibitBuilder_View_Helper_ExhibitAttachmentGallery extends Zend_View_Help
         $html = '';
         foreach  ($attachments as $attachment) {
             $html .= '<div class="exhibit-item exhibit-gallery-item">';
-            $html .= $this->view->exhibitAttachment($attachment, $fileOptions, $linkProps, true);
+            $html .= $this->view->exhibitAttachment($attachment, $fileOptions, $linkProps, $forceImage, $zoom);
             $html .= '</div>';
         }
     
