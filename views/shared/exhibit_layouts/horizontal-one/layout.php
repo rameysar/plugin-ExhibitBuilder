@@ -14,7 +14,6 @@ $captionPosition = isset($options['captions-position'])
     : 'center';
 	?>
 
-<!-- The normal Omeka functions for a layout; size and caption plus another zoom window -->
 <div class="gallery <?php if ($showcaseFile || !empty($text)) echo "$galleryPosition"; ?> captions-<?php echo $captionPosition; ?>">
 
     <?php echo $this->exhibitAttachmentGallery($attachments, array(), array(), false, true); ?>

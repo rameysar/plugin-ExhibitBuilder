@@ -16,17 +16,38 @@ class ExhibitBuilder_View_Helper_ExhibitAttachmentGallery extends Zend_View_Help
      * @param array $linkProps
      * @return string
      */
-    public function exhibitAttachmentGallery($attachments, $fileOptions = array(), $linkProps = array(), $forceImage = false, $zoom = false)
+	 
+	 /**
+	 *This is where I think the specification needs to go.
+	 *$attachments --> $attachment1, $attachment 2
+	 *but the division would have to happen before public function
+	 */
+	 
+    public function exhibitAttachmentGallery($attachment1, $fileOptions = array(), $linkProps = array(), $forceImage = false, $zoom = false)
     {
         if (!isset($fileOptions['imageSize'])) {
             $fileOptions['imageSize'] = 'square_thumbnail';
         }
         
+		$html .= '<div class="exhibit-item exhibit-gallery-item">';
+			$html .= $this->view->exhibitAttachment($attachment1, $fileOptions, $linkProps, $forceImage, $zoom);
+        $html .= '</div>';
         $html = '';
-        foreach  ($attachments as $attachment) {
-            $html .= '<div class="exhibit-item exhibit-gallery-item">';
-            $html .= $this->view->exhibitAttachment($attachment, $fileOptions, $linkProps, $forceImage, $zoom);
-            $html .= '</div>';
+    
+        return apply_filters('exhibit_attachment_gallery_markup', $html,
+            compact('attachments', 'fileOptions', 'linkProps'));
+    }
+	
+	public function exhibitAttachmentGallery($attachment2, $fileOptions = array(), $linkProps = array(), $forceImage = false, $zoom = false)
+    {
+        if (!isset($fileOptions['imageSize'])) {
+            $fileOptions['imageSize'] = 'square_thumbnail';
+        }
+        
+		$html .= '<div class="exhibit-item exhibit-gallery-item">';
+			$html .= $this->view->exhibitAttachment($attachment2, $fileOptions, $linkProps, $forceImage, $zoom);
+        $html .= '</div>';
+        $html = '';
         }
     
         return apply_filters('exhibit_attachment_gallery_markup', $html,
