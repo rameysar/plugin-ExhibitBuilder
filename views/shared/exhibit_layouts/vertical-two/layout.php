@@ -6,27 +6,14 @@
 </head>
 
 <?php
-$galleryFileSize = isset($options['file-size'])
-    ? html_escape($options['file-size'])
+$galleryFileSize = isset($options['gallery-file-size'])
+    ? html_escape($options['gallery-file-size'])
     : 'fullsize';
 $captionPosition = isset($options['captions-position'])
     ? html_escape($options['captions-position'])
     : 'center';
 	?>
-
-<!--once the attachments are differentiated, $attachments would become $attachment1 and $attachment2-->
-<div class="gallery <?php echo "$galleryPosition"; ?> captions-<?php echo $captionPosition; ?>">
-	<table style="width:100%;"
-		<tr>
-			<td>
-				<div id="map1" class="map">
-					<?php echo $this->exhibitAttachmentGallery($attachment1, array(), array(), false, true); ?>
-				</div>
-			</td>
-			<td>
-				<div id="map2" class="map">
-					<?php echo $this->exhibitAttachmentGallery($attachment2, array(), array(), false, true); ?>
-				</div>
-			</td>
-		</tr>
-	</table>
+	
+<div class="gallery <?php if ($showcaseFile || !empty($text)) echo "$galleryPosition"; ?> captions-<?php echo $captionPosition; ?>">
+     <?php echo $this->exhibitAttachmentGallery($attachments, array(), array(), false, true); ?>
+</div>
