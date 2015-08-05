@@ -151,9 +151,13 @@ class ExhibitLayout
                 'name' => __('Text'),
                 'description' => __('Layout featuring a block of text without files')
 			),
-            'vertical-two' => array(
-                'name' => __('Vertical Two'),
-                'description' => __('Layout featuring two large vertical columns')
+            'zoom-two' => array(
+                'name' => __('Zoom Two'),
+                'description' => __('Layout with two large zoomable windows')
+            ),
+			'zoom-one' => array(
+                'name' => __('Zoom One'),
+                'description' => __('One large, zoomable window with text on the side')
             )
 
         );
